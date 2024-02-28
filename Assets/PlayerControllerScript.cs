@@ -15,6 +15,8 @@ public class PlayerControllerScript : MonoBehaviour
     Animator animator;
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
 
+    bool canMove = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,29 +26,31 @@ public class PlayerControllerScript : MonoBehaviour
     }
     
     private void FixedUpdate(){
-        // If movement input is not 0, try to move
-        if(movementInput != Vector2.zero){
+        if(canMove){
+            // If movement input is not 0, try to move
+            if(movementInput != Vector2.zero){
 
-            bool success = TryMove(movementInput);
+                bool success = TryMove(movementInput);
 
-            if(!success){
-                success = TryMove(new Vector2(movementInput.x, 0));
-            }    
-            if(!success){
-                success = TryMove(new Vector2(0, movementInput.y));
-            }        
-            animator.SetBool("isMoving", success);
-        } else {
-            animator.SetBool("isMoving", false);
-        }
+                if(!success){
+                    success = TryMove(new Vector2(movementInput.x, 0));
+                }    
+                if(!success){
+                    success = TryMove(new Vector2(0, movementInput.y));
+                }        
+                animator.SetBool("isMoving", success);
+            } else {
+                animator.SetBool("isMoving", false);
+            }
 
-        // Set direction of sprite to movement direction
-        if(movementInput.x < 0){
-            spriteRenderer.flipX = true;  // left
-        } else if (movementInput.x > 0){
-            spriteRenderer.flipX = false; // right
+            // Set direction of sprite to movement direction
+            if(movementInput.x < 0){
+                spriteRenderer.flipX = true;  // left
+            } else if (movementInput.x > 0){
+                spriteRenderer.flipX = false; // right
 
 
+            }
         }
     }
 
@@ -75,5 +79,17 @@ public class PlayerControllerScript : MonoBehaviour
     void OnMove(InputValue movementValue){
         movementInput = movementValue.Get<Vector2>();
 
+    }
+
+    void OnFire(){
+        animator.SetTrigger("swordAttack");
+    }
+
+    public void LockMovement(){
+        canMove = false;
+    }
+
+    public void UnlockMovement(){
+        canMove = true;
     }
 }
