@@ -8,6 +8,7 @@ public class PlayerControllerScript : MonoBehaviour
     public float moveSpeed = 1f;
     public float collisionOffset = 0.05f;
     public ContactFilter2D movementFilter;
+    public SwordAttack swordAttack;
 
     Vector2 movementInput;
     SpriteRenderer spriteRenderer;
@@ -46,10 +47,10 @@ public class PlayerControllerScript : MonoBehaviour
             // Set direction of sprite to movement direction
             if(movementInput.x < 0){
                 spriteRenderer.flipX = true;  // left
+                swordAttack.attackDirection = SwordAttack.AttackDirection.left;
             } else if (movementInput.x > 0){
                 spriteRenderer.flipX = false; // right
-
-
+                swordAttack.attackDirection = SwordAttack.AttackDirection.right;
             }
         }
     }

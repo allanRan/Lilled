@@ -148,6 +148,7 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  swordAttack: {fileID: 1336427611998232295}
 --- !u!50 &2442515270499717459
 Rigidbody2D:
   serializedVersion: 4
@@ -303,7 +304,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -331,3 +332,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f8344f8a66d64f1892cb348c6b56d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackDirection: 0
