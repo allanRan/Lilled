@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SwordAttack : MonoBehaviour
 {
-    Collider2D swordCollider;
+    public Collider2D swordCollider;
+    
     Vector2 rightAttackOffset;
     
     public float damage = 3;
@@ -12,19 +13,16 @@ public class SwordAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        swordCollider = GetComponent<Collider2D>();
         rightAttackOffset = transform.position;
     }
 
     public void AttackRight(){
-        print("Attack Right");
         swordCollider.enabled = true;
-        transform.position = rightAttackOffset;
+        transform.localPosition = rightAttackOffset;
     }
     public void AttackLeft(){
-        print("Attack Left");
         swordCollider.enabled = true;
-        transform.position = new Vector2(rightAttackOffset.x * -1, rightAttackOffset.y);
+        transform.localPosition = new Vector2(rightAttackOffset.x * -1, rightAttackOffset.y);
     }
     public void StopAttack(){
         swordCollider.enabled = false;
