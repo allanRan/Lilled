@@ -47,10 +47,8 @@ public class PlayerControllerScript : MonoBehaviour
             // Set direction of sprite to movement direction
             if(movementInput.x < 0){
                 spriteRenderer.flipX = true;  // left
-                swordAttack.attackDirection = SwordAttack.AttackDirection.left;
             } else if (movementInput.x > 0){
                 spriteRenderer.flipX = false; // right
-                swordAttack.attackDirection = SwordAttack.AttackDirection.right;
             }
         }
     }
@@ -86,6 +84,14 @@ public class PlayerControllerScript : MonoBehaviour
         animator.SetTrigger("swordAttack");
     }
 
+    public void SwordAttack() {
+        LockMovement();
+        if(spriteRenderer.flipX == true){
+            swordAttack.AttackLeft();
+        } else {
+            swordAttack.AttackRight();
+        }
+    }
     public void LockMovement(){
         canMove = false;
     }

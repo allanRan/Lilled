@@ -6,12 +6,8 @@ public class SwordAttack : MonoBehaviour
 {
     Collider2D swordCollider;
     Vector2 rightAttackOffset;
-
-    public enum AttackDirection{
-        left, right
-    }
-
-    public AttackDirection attackDirection;
+    
+    public float damage = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -20,29 +16,29 @@ public class SwordAttack : MonoBehaviour
         rightAttackOffset = transform.position;
     }
 
-    public void Attack() {
-        switch(attackDirection){
-            case AttackDirection.left:
-                AttackLeft();
-                break;
-            case AttackDirection.right:
-                AttackRight();
-                break;
-
-        }
-
-    }
-
-    private void AttackRight(){
+    public void AttackRight(){
+        print("Attack Right");
         swordCollider.enabled = true;
         transform.position = rightAttackOffset;
     }
-    private void AttackLeft(){
+    public void AttackLeft(){
+        print("Attack Left");
         swordCollider.enabled = true;
         transform.position = new Vector2(rightAttackOffset.x * -1, rightAttackOffset.y);
     }
     public void StopAttack(){
         swordCollider.enabled = false;
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.tag == "Enemy") {
+            // Deal damage to the enemy
+            Enemy enemy = other.GetComponent<Enemy>();
+
+            if(enemy != null) {
+                enemy.Health -= damage;
+            }
+        }
     }
 }
