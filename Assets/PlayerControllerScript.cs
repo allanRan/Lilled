@@ -24,7 +24,7 @@ public class PlayerControllerScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-    }
+   }
     
     private void FixedUpdate(){
         if(canMove){
@@ -34,14 +34,16 @@ public class PlayerControllerScript : MonoBehaviour
                 bool success = TryMove(movementInput);
 
                 if(!success){
-                    success = TryMove(new Vector2(movementInput.x, 0));
+                    success = TryMove(new Vector2(movementInput.x, 0)); // kas saab liikuda vasakule voi paremale
                 }    
                 if(!success){
-                    success = TryMove(new Vector2(0, movementInput.y));
+                    success = TryMove(new Vector2(0, movementInput.y)); // kas saab liikuda yles voi alla
                 }        
-                animator.SetBool("isMoving", success);
+                animator.SetFloat("isMovingX", movementInput.x);
+                animator.SetFloat("isMovingY", movementInput.y);
             } else {
-                animator.SetBool("isMoving", false);
+                animator.SetFloat("isMovingX", 0);
+                animator.SetFloat("isMovingY", 0);
             }
 
             // Set direction of sprite to movement direction

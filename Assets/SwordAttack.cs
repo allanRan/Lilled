@@ -7,7 +7,8 @@ public class SwordAttack : MonoBehaviour
     public Collider2D swordCollider;
     
     Vector2 rightAttackOffset;
-    
+    Vector2 upAttackOffset;
+
     public float damage = 3;
 
     // Start is called before the first frame update
@@ -15,6 +16,7 @@ public class SwordAttack : MonoBehaviour
     {
         rightAttackOffset = transform.position;
     }
+
 
     public void AttackRight(){
         swordCollider.enabled = true;
@@ -26,7 +28,6 @@ public class SwordAttack : MonoBehaviour
     }
     public void StopAttack(){
         swordCollider.enabled = false;
-        
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
