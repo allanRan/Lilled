@@ -4,31 +4,23 @@ using UnityEngine;
 
 public class Flower : MonoBehaviour
 {
-    private bool picked;
-
-//    Animator animator;
+    private bool picked = false;
     
     public bool Picked {
         set {
             picked = value;
-//            if(picked){
-//                Defeated(); // mängi animatsiooni
-//            }
+            print("Paneme picked väärtuseks" + picked);
+            if(picked){
+                Destroy(gameObject);
+                print("Korjame lille üles");
+            }
+            else {
+//              Spawn(gameObject);
+                print("Paneme lille maha");
+            }
         }
         get {
             return picked;
         }
     } 
-
-    private void Start() {
-//        animator = GetComponent<Animator>();
-    }
-
-    public void Defeated() {
-//        animator.SetTrigger("Defeated");
-    }
-
-    public void PickUpFlower() {
-        Destroy(gameObject);
-    }
 }

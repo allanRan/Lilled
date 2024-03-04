@@ -93,15 +93,15 @@ public class PlayerControllerScript : MonoBehaviour
     public void PlayerAction() {
         LockMovement();
         if(spriteRenderer.flipX == true){
-            swordAttack.AttackLeft();
+            swordAttack.ActionLeft();
         } else {
-            swordAttack.AttackRight();
+            swordAttack.ActionRight();
         }
     }
 
     public void EndPlayerAction() {
         UnlockMovement();
-        swordAttack.StopAttack();
+        swordAttack.StopAction();
     }
 
 

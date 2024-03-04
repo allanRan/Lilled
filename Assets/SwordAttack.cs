@@ -7,7 +7,6 @@ public class SwordAttack : MonoBehaviour
     public Collider2D swordCollider;
     
     Vector2 rightAttackOffset;
-    Vector2 upAttackOffset;
 
     public float damage = 3;
 
@@ -18,15 +17,15 @@ public class SwordAttack : MonoBehaviour
     }
 
 
-    public void AttackRight(){
+    public void ActionRight(){
         swordCollider.enabled = true;
         transform.localPosition = rightAttackOffset;
     }
-    public void AttackLeft(){
+    public void ActionLeft(){
         swordCollider.enabled = true;
         transform.localPosition = new Vector2(rightAttackOffset.x * -1, rightAttackOffset.y);
     }
-    public void StopAttack(){
+    public void StopAction(){
         swordCollider.enabled = false;
     }
 
@@ -44,7 +43,9 @@ public class SwordAttack : MonoBehaviour
             Flower flower = other.GetComponent<Flower>();
 
             if(flower != null) {
-                flower.Picked = true;
+                if(flower.Picked == false){
+                    flower.Picked = true;
+                }
             }
         }
     }

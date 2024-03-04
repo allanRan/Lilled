@@ -25,10 +25,10 @@ public class Enemy : MonoBehaviour
     }
 
     public void Defeated() {
-        animator.SetTrigger("Defeated");
+        animator.SetTrigger("Defeated"); // Alustab surma animatsiooni
     }
 
     public void RemoveEnemy() {
-        Destroy(gameObject);
+        Destroy(gameObject);     // Animatsiooni lõpus kustutab vaenlase
     }
 }
