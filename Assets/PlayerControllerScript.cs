@@ -77,15 +77,20 @@ public class PlayerControllerScript : MonoBehaviour
 
 
     }
+    // Mängija vajutas mõnda liikumise klahvi või nuppu. Salvestame liikumise vektori muutujasse.
     void OnMove(InputValue movementValue){
         movementInput = movementValue.Get<Vector2>();
     }
-
+    
     void OnFire(){
         animator.SetTrigger("swordAttack");
     }
 
-    public void SwordAttack() {
+    void OnPickUp(){
+        animator.SetTrigger("pickUp");
+    }
+
+    public void PlayerAction() {
         LockMovement();
         if(spriteRenderer.flipX == true){
             swordAttack.AttackLeft();
@@ -94,15 +99,23 @@ public class PlayerControllerScript : MonoBehaviour
         }
     }
 
-    public void EndSwordAttack() {
+    public void EndPlayerAction() {
         UnlockMovement();
         swordAttack.StopAttack();
     }
 
+
+
+
+
+///
+/// Rünnaku ja asjade võtmise ja mahapanemise ajaks on vaja tegelasel seisma jääda
+///
+    // Paneme liikumise seisma
     public void LockMovement(){
         canMove = false;
     }
-
+    // Lubame tegelasel jälle liikuda
     public void UnlockMovement(){
         canMove = true;
     }

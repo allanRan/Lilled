@@ -39,5 +39,13 @@ public class SwordAttack : MonoBehaviour
                 enemy.Health -= damage;
             }
         }
+        if(other.tag == "Flower") {
+            // PickUp the flower
+            Flower flower = other.GetComponent<Flower>();
+
+            if(flower != null) {
+                flower.Picked = true;
+            }
+        }
     }
 }
